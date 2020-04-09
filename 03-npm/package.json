@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lion-lib-n": "^1.0.0"
+    "lion-lib-n": "^1.0.1"
   }
 }
