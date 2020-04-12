@@ -68,6 +68,20 @@ async function getCourses() {
         });
     debugDb('courses:::', courses);
 }
-getCourses();
+// getCourses();
 
+async function getAuthorByReg() {
+    const courses = await Course
+        // .find({author: /^mosh/ })  // 以什么开头的
+        // .find({author: /nico$/}) // 以什么结尾的
+        .find({author: /.*nico.*/i}) // 包含某个patter的
+        .limit(10)
+        .sort({name: 1})
+        .select({
+            name: 1, tags: 1, author: 1, price: 1
+        });
+    console.log('courses:::', courses);
+}
+
+getAuthorByReg();
 
