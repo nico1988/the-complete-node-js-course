@@ -20,7 +20,7 @@ async function displayCommits() {
         const commits = await getCommits();
         console.log(commits);
     } catch (e) {
-        console.log(e);
+        console.log("err", e);
     }
 }
 
@@ -53,7 +53,8 @@ function getCommits(cb) {
 
         setTimeout(function () {
             console.log('getCommits:::');
-            resolve('haha');
+            // resolve('haha');
+            reject('aa');
         }, 1000);
     })
 }
