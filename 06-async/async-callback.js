@@ -14,12 +14,12 @@ console.log('before');
 // });
 // console.log('after');
 async function displayCommits() {
-    try{
+    try {
         const user = await getUser(1);
         const repos = await getRepositories();
         const commits = await getCommits();
         console.log(commits);
-    }catch (e) {
+    } catch (e) {
         console.log(e);
     }
 }
@@ -27,23 +27,33 @@ async function displayCommits() {
 displayCommits();
 
 function getUser(id, cb) {
-    setTimeout(function () {
-        console.log('reading user from db:::');
-        // cb({
-        //     id: id,
-        //     userName: 'nico1988'
-        // });
-    }, 1000);
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            console.log('reading user from db:::');
+            // cb({
+            //     id: id,
+            //     userName: 'nico1988'
+            // });
+        }, 1000);
+    })
 }
+
 function getRepositories(cb) {
-    setTimeout(function () {
-        console.log('getRepositories:::');
-        // cb();
-    }, 1000);
+    return new Promise(function (resolve, reject) {
+
+        setTimeout(function () {
+            console.log('getRepositories:::');
+            // cb();
+        }, 1000);
+    })
 }
+
 function getCommits(cb) {
-    setTimeout(function () {
-        console.log('getCommits:::');
-        // cb();
-    }, 1000);
+    return new Promise(function (resolve, reject) {
+
+        setTimeout(function () {
+            console.log('getCommits:::');
+            // cb();
+        }, 1000);
+    })
 }
