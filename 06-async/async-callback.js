@@ -26,14 +26,14 @@ async function displayCommits() {
 
 displayCommits();
 
-function getUser(id, cb) {
+function getUser(id) {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             console.log('reading user from db:::');
-            // cb({
-            //     id: id,
-            //     userName: 'nico1988'
-            // });
+            resolve({
+                id: id,
+                userName: 'nico1988'
+            })
         }, 1000);
     })
 }
@@ -43,7 +43,7 @@ function getRepositories(cb) {
 
         setTimeout(function () {
             console.log('getRepositories:::');
-            // cb();
+            resolve('blog');
         }, 1000);
     })
 }
@@ -53,7 +53,7 @@ function getCommits(cb) {
 
         setTimeout(function () {
             console.log('getCommits:::');
-            // cb();
+            resolve('haha');
         }, 1000);
     })
 }
