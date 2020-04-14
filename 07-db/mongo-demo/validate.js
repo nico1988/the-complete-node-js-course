@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const debugDb = require('debug')('app:db');
+const debugDb = require('debug')('app:validate');
 const {connectToMongo} = require('./connect');
 
 // model
@@ -20,18 +20,28 @@ const Course = mongoose.model('Course', courseSchema);
 
 async function createCourse() {
     const newCourse = {
-        name: 'node course',
+        // name: 'node course',  // 验证只在mongoose级别管用  mongodb本身不管name字段有没有 都能存
         author: 'mosh',
         price: 2,
         tags: ['node', 'frontend'],
         isPublished: true
     };
     const course = new Course(newCourse);
-    const result = await course.save();
-    debugDb('result', result)
+    try {
+        // await course.validate(function (err) {
+        //     if (err) {
+        //         debugDb('err:::', err);
+        //     }
+        // });  // promise void 设计错误
+
+        const result = await course.save();
+        debugDb('result', result)
+    }catch (e) {
+        debugDb('err:::', e);
+    }
 }
 
-// createCourse();
+createCourse();
 async function getCourses() {
     // 操作符
     // eq
@@ -96,4 +106,4 @@ async function getAuthorByRegCount() {
     console.log('courses:::', courses);
 }
 
-getAuthorByRegCount();
+// getAuthorByRegCount();

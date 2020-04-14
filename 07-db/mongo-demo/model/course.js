@@ -1,5 +1,8 @@
 module.exports.CourseModel = {
-    name: String,
+    name: {
+        type: String,
+        required: true
+    },
     author: String,
     tags: [String],
     price: Number,
