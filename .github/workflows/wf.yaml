@@ -1,0 +1,18 @@
+name: nodejs course actions
+on:
+  push:
+    branches:
+      - master
+jobs:
+  first_job:
+    name: first_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a greeting
+        env:
+          MY_VAR: Hi there! My name is
+          FIRST_NAME: nico
+          MIDDLE_NAME: xia
+          LAST_NAME: 1988
+        run: |
+          echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
