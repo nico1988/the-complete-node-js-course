@@ -24,7 +24,10 @@ const courseSchema = new mongoose.Schema({
         category: {
             type: String,
             enum: ['web', 'mobile', 'network'],
-            required: true
+            required: true,
+            lowercase: true,
+            uppercase: true,
+            trim: true
         },
         author: String,
         tags: {
@@ -69,7 +72,9 @@ const courseSchema = new mongoose.Schema({
                 return this.isPublished
             },
             min: 0,
-            max: 20
+            max: 20,
+            get: v => Math.round(v),
+            set: v => Math.round(v)
         }
     }
 );
@@ -83,9 +88,9 @@ async function createCourse() {
         name: 'node course',  // 验证只在mongoose级别管用  mongodb本身不管name字段有没有 都能存
         author: 'mosh',
         category: 'web',
-        price: 2,
+        price: 12.2,
         tags: ['web'], // 如果为空 或者不是数组 就会验证出错
-        isPublished: true
+        isPublished: false
     };
     const course = new Course(newCourse);
     try {
