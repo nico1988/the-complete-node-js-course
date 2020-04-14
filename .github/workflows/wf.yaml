@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
 jobs:
   first_job:
     name: first_job
