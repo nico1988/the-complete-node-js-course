@@ -4,34 +4,29 @@ function getUser(id) {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             console.log('reading user from db:::');
-            const user = {
+            resolve({
                 id: id,
                 userName: 'nico1988'
-            };
-            console.log('get user success:::', user);
-            resolve(user);
+            })
         }, 1000);
     })
 }
 
-function getRepositories(userName) {
-    return new Promise(function (resolve,reject) {
-        console.log(`getting ${userName}'s repositories:::`);
+function getRepositories(cb) {
+    return new Promise(function (resolve, reject) {
+
         setTimeout(function () {
-            let userRepos = {
-                userName: userName,
-                repos: ['blog', 'nodejs', 'java']
-            };
-            console.log('get userRepos success:::', userRepos);
-            resolve(userRepos);
-        })
+            console.log('getRepositories:::');
+            resolve('blog');
+        }, 1000);
     })
 }
 
-function getCommits(repo) {
+function getCommits(cb) {
     return new Promise(function (resolve, reject) {
-        console.log(`getting ${repo.userName}'s repository - ${repo.repos[0]}'s commits`);
+
         setTimeout(function () {
+            console.log('getCommits:::');
             resolve('haha');
             // reject('aa');
         }, 1000);
@@ -41,8 +36,8 @@ function getCommits(repo) {
 
 async function displayCommits() {
     const user = await getUser(1999);
-    const repos = await getRepositories(user.userName);
-    const commit = await getCommits(repos);
+    const repos = await getRepositories();
+    const commit = await getCommits();
     console.log('commit:::', commit);
 }
 
